@@ -1,3 +1,4 @@
+package com.epam.java.training;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
