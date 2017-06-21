@@ -8,8 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-
-
 public class StringTest {
 
 	public static void main(String args[]) {
@@ -23,14 +21,14 @@ public class StringTest {
 		String endChar = keyboard.nextLine();
 		System.out.println("Opening Character = " + startChar);
 		System.out.println("Closing Character = " + endChar);
-		
+
 		keyboard.close();
-		sp.manipulatedString(s,startChar,endChar);
-		
-		
+		sp.manipulatedString(s, startChar, endChar);
+
 	}
 
-	private void manipulatedString(String s, String startChar, String endChar) throws PatternSyntaxException,StringIndexOutOfBoundsException{
+	private void manipulatedString(String s, String startChar, String endChar)
+			throws PatternSyntaxException, StringIndexOutOfBoundsException {
 		String regex = startChar + "(.*?)" + endChar;
 		Pattern p;
 		if (s.contains(startChar) && s.contains(endChar)) {
@@ -52,16 +50,10 @@ public class StringTest {
 			List<String> keys = new ArrayList<>();
 			keys.addAll(regexMatcher.keySet());
 			Collections.sort(keys, new StringLengthComparator());
-//			System.out.println(regexMatcher.get(keys.get(0)));
-	
-			String removeStr = regexMatcher.get(keys.get(0));
-//			System.out.println("Remove String = " + removeStr);
-			int index = s.lastIndexOf(removeStr);
-			/*System.out.println(index);
-			System.out.println(removeStr.length());
-			System.out.println(index + (removeStr.length()));*/
-			StringBuilder sb = new StringBuilder(s);
 
+			String removeStr = regexMatcher.get(keys.get(0));
+			int index = s.lastIndexOf(removeStr);
+			StringBuilder sb = new StringBuilder(s);
 			sb.delete(index + 1, index + (removeStr.length() - 1));
 
 			System.out.println("Remaining text message:::" + sb.toString());
@@ -72,11 +64,12 @@ public class StringTest {
 
 	}
 }
-class StringLengthComparator implements Comparator<String>{ 
 
-    @Override
-        public int compare(String str1, String str2) {
-            return str1.length() - str2.length();
-        }
+class StringLengthComparator implements Comparator<String> {
+
+	@Override
+	public int compare(String str1, String str2) {
+		return str1.length() - str2.length();
+	}
 
 }
